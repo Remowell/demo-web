@@ -1,12 +1,14 @@
 window.onload = function(){
     $(".like").click((e) => {
         var btn = $(e.currentTarget);
-        var postId = btn.attr("data-post-id");
         btn.attr("disabled", "disabled");
+
+        const myBtn = e.target;
+        var postId = btn.attr("data-post-id");
         $.post("/post/" + postId + "/like", (data) => {
-            btn.text = ("" + data + " ❤");
-            btn.removeClass("button-secondary");
-            btn.addClass("btn-danger");
+            myBtn.innerText = "" + data + " ❤";
+            myBtn.classList.remove('button-secondary');
+            myBtn.classList.add('btn-danger');
         });
     });
 };
